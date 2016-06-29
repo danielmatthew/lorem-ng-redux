@@ -4,39 +4,46 @@
   <h1>Angular 2</h1>
 </section>
 
-<div class="alert alert-info">An Angular 2 implementation.</div>
-<div class="alert alert-warning" *ngIf="errorMessage">{{errorMessage}}</div>
+<div class="container">
+  <div class="alert alert-info">An Angular 2 implementation with filtering, expand and collapse, and native rendering (no virtualization)</div>
 
-<div class="form-group">
-  <input class="form-control" type="text" placeholder="Type to filter&hellip;" #listFilter (keyup)="0" />
+  <div class="alert alert-warning" *ngIf="errorMessage">{{errorMessage}}</div>
+
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="Type to filter&hellip;" [ngFormControl]="listFilter" (keyup)="0" />
+  </div>
 </div>
 
-<div class="col-xs-12">
-  <article *ngFor="let hero of heroes  class="panel panel-default">
-    <div class="media" >
-      <img src="http://placehold.it/60x80" alt="" class="media-figure" (click)="hero.isCollapsed = !hero.isCollapsed">
-      <div class="media-body" [ngSwitch]="hero.type">
-        <template ngSwitchCase="ITEM">
-          <span [innerHTML]="hero.citation?.html" class="item"></span>
-        </template>
-        <template ngSwitchCase="NOTE">
-          <span [innerHTML]="hero.note?.html" class="note"></span>
-        </template>
+<div class="container">
+  <div class="col-xs-12">
+    <article *ngIf="!items" class="panel panel-default text-center well">
+      <i class="fa fa-circle-o-notch fa-spin fa-4x"></i>
+    </article>
+    <article *ngFor="let item of items" class="panel panel-default">
+      <div class="media"  (click)="item.isCollapsed = !item.isCollapsed">
+        <img src="http://placehold.it/60x80" alt="" class="media-figure">
+        <div class="media-body" [ngSwitch]="item.type">
+          <template ngSwitchCase="ITEM">
+            <span [innerHTML]="item.citation?.html" class="item"></span>
+          </template>
+          <template ngSwitchCase="NOTE">
+            <span [innerHTML]="item.note?.html" class="note"></span>
+          </template>
+        </div>
+        <div class="btn-group" dropdown keyboardNav="true">
+          <button class="media-control btn btn-link btn-lg" type="button" dropdownToggle>
+            <i class="fa fa-ellipsis-v"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="">One</a></li>
+            <li><a href="">Two</a></li>
+            <li><a href="">Three</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="btn-group" dropdown keyboardNav="true">
-        <button class="media-control btn btn-link btn-lg" type="button" dropdownToggle>
-          <i class="fa fa-ellipsis-v"></i>
-        </button>
-        <ul class="dropdown-menu pull-right" role="menu">
-          <li><a href="">One</a></li>
-          <li><a href="">Two</a></li>
-          <li><a href="">Three</a></li>
-        </ul>
+      <div class="lol" [collapse]="!item.isCollapsed" >
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptatibus placeat laboriosam laborum fuga repellat hic dicta, ducimus officia, possimus, facilis magnam ad eligendi inventore assumenda eum fugiat veritatis. Eum.
       </div>
-    </div>
-    <div class="lol" [collapse]="!hero.isCollapsed">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Soluta illo dignissimos nobis officia nam reiciendis animi iusto ratione eum aut? Tempore fuga, est asperiores. Nemo blanditiis dolor quam, nulla aut.
-    </div>
-  </article>
+    </article>
+  </div>
 </div>
