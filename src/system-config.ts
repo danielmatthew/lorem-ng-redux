@@ -7,12 +7,19 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-  'ng2-bootstrap':   'node_modules/ng2-bootstrap/ng2-bootstrap'
+
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'node_modules/ng2-bootstrap': {
+    'defaultExtension': 'js'
+  }
 };
+
+const paths: any = {
+  'ng2-bootstrap/ng2-bootstrap':   'node_modules/ng2-bootstrap/ng2-bootstrap'
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -57,4 +64,4 @@ System.config({
 });
 
 // Apply the user's configuration.
-System.config({ map, packages });
+System.config({ map, packages, paths });
