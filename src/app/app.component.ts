@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+// Add the RxJS Observable operators we need in this app.
+import './rxjs-operators';
+import { ListComponent } from './list-component';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  templateUrl: 'app.component.html',
+  template: '<list></list>',
   styleUrls: ['app.component.css']
 })
-export class AppComponent {
-  title = 'app works!';
-}
+
+export class AppComponent {}
