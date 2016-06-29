@@ -7,6 +7,7 @@ import { ListComponent } from './list-component';
   moduleId: module.id,
   selector: 'app-root',
   template: '<list></list>',
+  directives: [ ListComponent ],
   styleUrls: ['app.component.css']
 })
 
