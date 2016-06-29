@@ -7,6 +7,7 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'ng2-bootstrap':   'node_modules/ng2-bootstrap/ng2-bootstrap'
 };
 
 /** User packages configuration. */
