@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Control } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from './item';
 import { ListService } from '../list.service';
 import { Observable } from 'rxjs/Rx';
@@ -16,21 +17,33 @@ export class ListComponent implements OnInit {
   errorMessage: string;
   apiItems: Item[];
   items: Item[];
+  sub: any;
   mode = 'Observable';
   listFilter = new Control();
 
-  constructor (private listService: ListService) {
-    console.log('ListComponent', listService);
+  constructor (
+    private route: ActivatedRoute,
+    private router: Router,
+    private listService: ListService) {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
-    this.getItems();
+    this.sub = this.router
+      .routerState
+      .queryParams
+      .subscribe(params => {
+        const countString = params['count'];
+        this.getItems(countString && Number(countString));
+      });
   }
 
-  getItems() {
-    console.log('getItems');
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 
+  getItems(count?: number) {
     // configure filter-triggered behaviour
     this.listFilter
       .valueChanges
@@ -45,7 +58,7 @@ export class ListComponent implements OnInit {
       );
 
     // Fetch items from the service
-    this.listService.getItems().subscribe(
+    this.listService.getItems(count).subscribe(
       items => {
         this.apiItems = items;
         this.items = items;
