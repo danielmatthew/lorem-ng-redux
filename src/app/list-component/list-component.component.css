@@ -1,0 +1,32 @@
+.panel {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+.panel, .well {
+    margin-bottom: 20px;
+}
+.panel-default {
+    border-color: #ddd;
+}
+.media {
+    display: flex;
+    align-items: center;
+}
+
+.media-control, .media-figure {
+    margin-right: 1em;
+}
+
+.media-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.media-control {
+    margin-left: 1em;
+}
+
+.media-control, .media-figure {
+    margin-right: 1em;
+}

@@ -7,5 +7,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log('bootstrapping');
+
 bootstrap(AppComponent, [HTTP_PROVIDERS]);
 
